@@ -1,6 +1,7 @@
 $ = jQuery = require('jquery');
 var React = require('react');
 var Home = require('./components/homePage');
+var Authors = require('./components/authors/authorPage');
 var About = require('./components/about/aboutPage');
 var Header = require('./components/common/header');
 
@@ -15,6 +16,7 @@ var Header = require('./components/common/header');
             // Look at the route for this app
             switch (this.props.route) {
                 case 'about': Child = About; break; // If route is about, child is about
+                case 'authors': Child = Authors; break; // If route is authors, child is authors
                 default: Child = Home; //Otherwise, default to homepage
             }
 
