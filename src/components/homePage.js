@@ -1,19 +1,15 @@
-"use strict"; // Tell the browser to evaluate everything in strict mode
+import React from "react"; // ES import syntax
 
-var React = require("react"); // Import react using the common js pattern
+// Declare a component as a function
+// Function names must be camelcase
+function HomePage() {
+  return (
+    <div className="jumbotron">
+      <h1>Pluralsight Administration</h1>
+      <p>React, Flux and React Router for ultra-responsive web apps.</p>
+      <a href="/about">About</a>
+    </div>
+  );
+}
 
-// Define component
-var Home = React.createClass({
-    render: function () {
-        return (
-            <div className="jumbotron">
-                <h1>Pluralsight Administration</h1>
-                <p>React, React Router and Flux for ultra-responsive web apps.</p>
-            </div>
-        );
-    }
-});
-
-module.exports = Home; // Export for use elsewhere
-
-
+export default HomePage;
