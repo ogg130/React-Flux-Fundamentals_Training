@@ -73,3 +73,39 @@ Lesson 6
 			
 	
 Lesson 7
+
+	Hooks are awesome. Must use.
+
+	Controller views - Top level (parent) react component that has child components
+		controlls data flows for child components by setting props on child components	
+		Interacts with Flux stores
+	
+	Related terms - Controller view - smart component or container component
+					Child component - dumb component or presentation component
+
+	Props	
+		When you create components, they accept props which allow the parent to pass data and functions to child componoents
+		Proptypes document data and functions that are expected to be passed via props
+		Proptypes are only run in development - they are a development tool to catch issues and document
+		create-react-app uses prod version if you run production build
+		Defualt props can be declared for optional props
+		
+Lesson 8
+
+	React router 
+
+		1) Wrap app with router component - BrowserRouter
+		2) Declare our routes using the Route component - accepts propts to declare component to load for each url
+		3) Link component to create anchors which are managed by react router so they dont postback to the brower
+
+Lesson 9
+
+	Forms
+		
+		Any <input> with a value is called a controlled component
+
+		Controlled components values are controlled by react and will always match the value of the assigned prop
+		For these you must declare a change handler for keystrokes to register
+		You want to work with controlled components
+
+		npm install react-toastify@5.1.1
