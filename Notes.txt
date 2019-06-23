@@ -1,0 +1,75 @@
+Lesson 1 - 2
+
+		Installed dev environment - VsCode / EsLint / Prettier
+
+Lessons 3-4
+
+		Create application:
+			npx create-react-app@3.0.1 ps-flux
+
+		Install dependencies:
+			npm install flux@3.1.3 react-router-dom@5.0.0 bootstrap@4.3.1
+
+		Install development environment dependencies:
+			npm install -D cross-env@5.2.0 npm-run-all@4.1.5 json-server@0.15.0
+			
+				cross-env: is library for env vars
+				npm-run-all: runs multiple scripts at same time
+				json-server: serve mock data
+
+Lessons 4-5
+
+		Copy tools folder from pluralsight
+
+		Start fake api only:
+			npm run start:api
+
+		run app and fake api
+			npm start
+			
+		Functional componants are preferred over class components in most cases
+		
+Lesson 6
+
+	Props - short for properties
+	Immuntable - owned by the parent they are passed in 
+	If you want to hold data that changes over time, use state
+	
+	State - 
+	Mutable - values for form fields
+	Set via setState in class componants 
+		OR better - usestate or usereducer(?) hooks in function components
+			state.username for function components	
+			this.state.username for class component
+	Handling state in class component-
+		If you wnat to hold value and state in class componant you can initialize state in constructor
+			*need to call super(props); first
+		OR - better - declare state using a class fields	
+		 state = {name: ""}; - avoids constructor call, less typing
+	
+	Lifecycle
+		
+		only exist on class components - hooks do it differently for functional componoents
+			(constructor) is called before component is mounted
+				good spot to Initialize state and bind event methods - but optional and better to avoids	
+			(render) typically returns JSX, arrays, strings, numbers, booleans or null when state or props change
+				Render function shouldnt modify state or directly interact with browser
+			(componentDidMount) Runs immediately after component is mounted	
+				The components DOM exists here - can access it, set up subscriptions, work with 3rd party
+				frameworks, set timers and make http requests - can safely call setstate here
+			(componentDidUpdate) Invoked immediately after components updates are flushed to the dom, not on initial render
+				Allows you to operate on dom immediately after updated and re-rendered in dom
+			(componentWillUnmount) Runs just before component is unmounted from DOM	
+				Good place to clean up by destroying resources subscriptions or DOM elements that are created when the component was mounted
+				
+	
+	Keys -
+	
+		When creating many child components dynamically - its important to add a key for each child component
+			as children are added and removed, key is used to ensure things stay ordered and are properly destoryed
+				use something unique to the array that you are iterating over that wont change like a db primary key
+				
+				Dont use counters or index from map to assign key
+			
+	
+Lesson 7

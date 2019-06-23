@@ -2,6 +2,7 @@ import React from "react";
 import HomePage from "./HomePage"; // Render our homepage
 import AboutPage from "./AboutPage"; // Render our aboutpage
 import Header from "./common/Header"; // Render our header
+import CoursesPage from "./CoursesPage"; // Render our header
 
 // Function component
 function App() {
@@ -13,6 +14,7 @@ function App() {
 
     // Basic dumb routing without using react-router
     // if the route is /about, show the about page, otherwise show the homepage
+    if (route === "/courses") return <CoursesPage />;
     if (route === "/about") return <AboutPage />;
     return <HomePage />;
   }
