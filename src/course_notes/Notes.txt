@@ -168,6 +168,7 @@ Flux api - 5 functions
 
 Enhancement ideas:
 
+	DONE - toast for delete button
 	404 page when url has invalid slug
 	display authors name on courses page instead of api (call the authors api / create seperate authors store)
 	populate authors dropdown with data from api instead of hardcoded data
