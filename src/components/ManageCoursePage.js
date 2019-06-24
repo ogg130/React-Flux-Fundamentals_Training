@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from "react";
 import CourseForm from "./CourseForm";
-import * as courseApi from "../api/courseApi";
+import courseStore from "../stores/courseStore";
 import { toast } from "react-toastify";
+import * as courseActions from "../actions/courseActions";
 
-//Functional component using arrow functions
+// Functional component using arrow functions
 const ManageCoursePage = props => {
+  // Not sure
   const [errors, setErrors] = useState({});
-  //Define initial state for course
+
+  const [courses, setCourses] = useState(courseStore.getCourses());
+
+  // Define initial state for course
   const [course, setCourse] = useState({
     id: null,
     slug: "",
@@ -16,13 +21,29 @@ const ManageCoursePage = props => {
   });
 
   useEffect(() => {
-    const slug = props.match.params.slug; // from the path `courses/:sluig
-    if (slug) {
-      //calls api, gets the record identified by slug, sets the state of the
+    /* Connect to flux store */
+    courseStore.addChangeListener(onChange);
+
+    const slug = props.match.params.slug; // from the path `courses/:slug
+    /* if there have been no courses rendered */
+    if (courses.length === 0) {
+      /* load courses from the store */
+      courseActions.loadCourses();
+    } else if (slug) {
+      // gets the record identified by slug from the store, sets the state of the
       //course object to contain the record that was pulled from the api
-      courseApi.getCourseBySlug(slug).then(_course => setCourse(_course));
+      setCourse(courseStore.getCourseBySlug(slug));
     }
-  }, [props.match.params.slug]); // Only rerun if props change
+    /* remove change listener - function we return will be run when component
+    is unmounted*/
+    return () => courseStore.removeChangeListener(onChange);
+  }, [courses.length, props.match.params.slug]); // Only rerun if props change
+
+  /* Request a list of courses from course store and store in local state 
+  using setCourses function that was declared above*/
+  function onChange() {
+    setCourses(courseStore.getCourses());
+  }
 
   function handleChange(event) {
     //To avoid mutating state, make a copy of the state object
@@ -55,7 +76,7 @@ const ManageCoursePage = props => {
   function handleSubmit(event) {
     event.preventDefault(); //Handle form submission on client site to prevent postbacks
     if (!formIsValid()) return;
-    courseApi.saveCourse(course).then(() => {
+    courseActions.saveCourse(course).then(() => {
       //Redirect using history
       props.history.push("/courses");
       toast.success("Course saved.");

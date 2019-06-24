@@ -109,3 +109,67 @@ Lesson 9
 		You want to work with controlled components
 
 		npm install react-toastify@5.1.1
+
+Lesson 10
+
+	Flux is a pattern of unidirectional dataflows
+	all updates to apps state occur via centralized dispatcher
+	this pattern enforced clear, predicatbale 2 way data flows
+
+	Flow
+	1) Action occurs
+	2) Dispatcher notifies registered stores that action has occured
+	3) store changes
+	4) react components that are listening re-render
+
+	3 concepts:
+
+	Actions
+		User interactions that occur in react components
+		(Click a delete button)
+
+		Actioncreators are dispatcher helper methods that describle all actions possible in app
+		triggered when user interacts with user interface
+	
+	Dispatcher
+		Singleton registry - centralized list of callbacks - 
+		notifies stores that are registered
+
+		Use a const file to organize flux constants
+
+
+
+	Stores
+		Hold applications data (state and logic)
+		Updated store = react re-render
+		Uses Node's eventEmitter to find out that state has changed to be redrawn when there is a change
+
+		structure:
+			Extend eventEmitter	- so that store can emit events to tell componantes that there is a change
+			addChangeListener and removeChangeListener - to register / unregister components
+			emitChange - actuallt emit the change
+
+	Controller Views:
+
+		Conteroller views interact with stores
+
+Flux api - 5 functions	
+
+	register(function callback) - Store tells dispatcher to make it aware of updates
+	unregister(function callback) - Store tells dispatcher to stop making it aware
+	waitFor(array<string> ids) - This store gets called before others that happen at the same time
+	dispatch(object payload) - tells registered stores about action
+	isDispatching() - boolean that indicates true when dispatcher is busy isDispatching
+
+1) Create constant to define new actiontype
+2) Add action to courseActions
+3) Update courseStore to handle new action
+
+
+Enhancement ideas:
+
+	404 page when url has invalid slug
+	display authors name on courses page instead of api (call the authors api / create seperate authors store)
+	populate authors dropdown with data from api instead of hardcoded data
+	create usable dropdown component and replace existing dropdown with it
+	Add author management just like we have class management
