@@ -1,4 +1,4 @@
-This app is my self-study repo for following along with the pluralsight course located at https://app.pluralsight.com/player?course=react-flux-building-applications&author=cory-house&name=react-flux-building-applications-m2&clip=8&mode=live
+This app is my self-study repo for following along with the *EXCELLENT* pluralsight course located at https://app.pluralsight.com/player?course=react-flux-building-applications&author=cory-house&name=react-flux-building-applications-m2&clip=8&mode=live
 
 This app use the following technologies:
 
